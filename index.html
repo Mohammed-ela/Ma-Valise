@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="mini todolist en javascript">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
-    <script src="assets/main.js"></script>
+    <script src="assets/main.js" defer></script>
     <link rel="stylesheet" href="assets/styles.css">
     <title>Ma Valise</title>
 </head>
@@ -22,9 +22,9 @@
             <div class="mb-3">
                 <label for="temps" class="form-label">2/ Vers quel climat ? 🌎</label>
                 <select class="form-select form-control-sm text-center" id="climate" required>
-                    <option value="moderate">&#x1F60E; Modéré</option>
-                    <option value="hot">&#129398; Chaud</option>
-                    <option value="cold">&#129397; Froid</option>
+                    <option value="moderate">&#x1F60E;Modéré</option>
+                    <option value="hot">&#129397;Chaud</option>
+                    <option value="cold">&#129398;Froid</option>
                 </select>
             </div>
     
@@ -33,8 +33,10 @@
     
         <div class="mt-4" id="ListeAffairesdiv" style="display: none;">
             <h2>Voilà ce que vous devez prendre pour être bien :</h2>
-            <ul id="ListeAffaires"></ul>
-            <button class="btn btn-secondary" onclick="reset(e)">Recommencer</button>
+            <ul id="ListeAffaires">
+                <!-- J'affiche les informations ici  -->
+            </ul>
+            <button class="btn btn-secondary" onclick="reset(event)">Recommencer</button>
         </div>
     </div>
 
