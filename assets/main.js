@@ -19,7 +19,7 @@ function generatePackingList() {
     // valeur non modifié pour affiché msg si numNights sup a 10 
     const numNightsdepart = document.getElementById("numNights").value;
     if (numNightsdepart > 10) {
-        packingList.push("<b> Faites des machines. Voyagez léger ! </b>");
+        packingList.push("Faites des machines. Voyagez léger !");
     }
     // Vérifier si le nombre de nuits est valide
     if (numNights <= 0) {
@@ -111,19 +111,28 @@ function generatePackingList() {
         packingList.push("1 paire de gants et bonnets");
     }
 
- // Ajouter la liste dans le localStorage s'il existe
- const savedPackingList = JSON.parse(localStorage.getItem("packingList")) || [];
-
- // Vérifier si l'élément est déjà coché
- const isChecked = (item) => savedPackingList.some((savedItem) => savedItem.text === item);
-
     // Afficher la liste des affaires dans le ul en ajoutant des li
     const listContainer = document.getElementById("ListeAffaires");
     listContainer.innerHTML = "";
     // je parcours le tableau , ajoute des li avec createelement a chaque donnée du tableau , et je append pour ajouté a la suite
-    packingList.forEach(item => {
+    packingList.forEach((item, index) => {
         const li = document.createElement("li");
-        li.textContent = item;
+    
+        // Ajouter une case à cocher
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.id = `item-${index}`;
+    
+        // Ajouter le texte de l'élément
+        const label = document.createElement("label");
+        label.htmlFor = `item-${index}`;
+        label.textContent = item;
+    
+        // Ajouter la case à cocher et le texte à l'élément li
+        li.appendChild(checkbox);
+        li.appendChild(label);
+    
+        // Ajouter l'élément li au conteneur de liste
         listContainer.appendChild(li);
     });
 
