@@ -1,0 +1,15 @@
+/* Style pour le bouton */
+.btn-submit {
+    background-color: #ffee8b; /* Jaune clair */
+    color: #000; /* Couleur du texte */
+    padding: 10px 20px; /* Marge intérieure du bouton */
+    border: none; /* Supprime la bordure par défaut du bouton */
+    border-radius: 5px; /* Coins arrondis */
+    cursor: pointer; /* Curseur de la souris en forme de main au survol */
+    transition: background-color 0.3s; /* Transition fluide de la couleur de fond */
+}
+
+/* Style pour le bouton au survol */
+.btn-submit:hover {
+    background-color: #ffa500; /* Jaune foncé au survol */
+}
