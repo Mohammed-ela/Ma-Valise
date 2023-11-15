@@ -7,21 +7,26 @@ function reset(event) {
 
 //fct pour affiché la liste de nos affaire en fonction de certaine condition dans un tableau
 function generatePackingList() {
-    // on stock les valeurs du formulaire saisie par l'utilisateur (nb nuit et climat)
-    const numNights = document.getElementById("numNights").value;
-    const climate = document.getElementById("climate").value;
 
+    // initialise un tableau vide quon va stocker des affaires
+    let packingList = [];
+    // le nombre articles max vaut 10
+    const maxItems = 10;
+    // on stock les valeurs du formulaire saisie par l'utilisateur (nb nuit et climat) 
+    //nb nuit est compris entre 1 et 10 maximum
+    const numNights = Math.min(parseInt(document.getElementById("numNights").value),maxItems);
+    const climate = document.getElementById("climate").value;
+    // valeur non modifié pour affiché msg si numNights sup a 10 
+    const numNightsdepart = document.getElementById("numNights").value;
+    if (numNightsdepart > 10) {
+        packingList.push("<b> Faites des machines. Voyagez léger ! </b>");
+    }
     // Vérifier si le nombre de nuits est valide
     if (numNights <= 0) {
         alert("Veuillez rentré un nombre de nuit valide");
         return;
     }
 
-    // le nombre articles max vaut 10
-    const maxItems = 10;
-
-    // initialise un tableau vide quon va stocker des affaires
-    let packingList = [];
 
     // Ajouter le sac à dos/valise a chaque fois 
     packingList.push("Un sac à dos ou une valise");
@@ -33,13 +38,25 @@ function generatePackingList() {
         packingList.push(`${numNights} paires de chaussettes`);
     }
 
+
    
 
     // Ajouter le nombre de sous-vêtements
-    packingList.push(`${numNights} sous-vêtement`);
+
+    if (numNights == 1) {
+        packingList.push(`${numNights} sous-vêtement`);
+    } else {
+        packingList.push(`${numNights} sous-vêtements`);
+    }
+    
 
     // Ajouter le nombre de t-shirts
-    packingList.push(`${numNights} t-shirt `);
+    if (numNights == 1) {
+        packingList.push(`${numNights} t-shirt `);
+    } else {
+        packingList.push(`${numNights} t-shirts `);
+    }
+   
 
     // Ajouter le nombre de pulls/sweats en fonction du nombre de nuits
     let numPulls;
@@ -50,7 +67,13 @@ function generatePackingList() {
     } else {
         numPulls = 3;
     }
-    packingList.push(`${numPulls} pull ou sweat`);
+        // j'ajoute en fonction du nb 
+        if (numPulls == 1) {
+            packingList.push(`${numPulls} pull ou sweat`);
+        } else {
+            packingList.push(`${numPulls} pulls ou sweats`);
+        }
+    
 
     // Ajouter le nombre de pantalons en fonction du nombre de nuits
     let numPants;
@@ -61,25 +84,38 @@ function generatePackingList() {
     } else {
         numPants = 3;
     }
-    packingList.push(`${numPants} Nombre de pantalons`);
+
+     // j'ajoute en fonction du nb 
+     if (numPulls == 1) {
+        packingList.push(`${numPants} pantalon`);
+    } else {
+        packingList.push(`${numPants} pantalons`);
+    }
+   
 
 
     // Chaussures ?
     if (numNights >= 6) {
-        packingList.push(`1 paire de chaussure`);
+        packingList.push(`1 paire de chaussures`);
     }
     
 
     // Ajouter en fonction du climat :
+    if (climate === "moderate") {
+        packingList.push("1 veste");
+    }
     if (climate === "hot") {
         packingList.push("1 tong ou claquette");
     } else if (climate === "cold") {
         packingList.push("1 veste");
-        packingList.push("gants et bonnets");
-        if (numNights > 10) {
-            packingList.push("Faites des machines. Voyagez léger !");
-        }
+        packingList.push("1 paire de gants et bonnets");
     }
+
+ // Ajouter la liste dans le localStorage s'il existe
+ const savedPackingList = JSON.parse(localStorage.getItem("packingList")) || [];
+
+ // Vérifier si l'élément est déjà coché
+ const isChecked = (item) => savedPackingList.some((savedItem) => savedItem.text === item);
 
     // Afficher la liste des affaires dans le ul en ajoutant des li
     const listContainer = document.getElementById("ListeAffaires");
