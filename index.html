@@ -12,19 +12,19 @@
 <body>
     <div class="container mt-5">
         <h1 class="mb-4 text-center">Ma valise 🧳</h1>
-    <p class="text-center">fini de devoir refléchir aux vêtements à prendre quand vous devez voyager !</p>
-        <form id="Mavaliseform">
-            <div class="mb-3 text-center">
+        <p class="text-center">Fini de devoir réfléchir aux vêtements à prendre quand vous devez voyager !</p>
+        <form id="Mavaliseform" class="text-center">
+            <div class="mb-3">
                 <label for="numNights" class="form-label">1/ Combien de nuits voyagez-vous ? &#127747;</label>
-                <input type="number" class="form-control" id="numNights" required min="1" value="3">
+                <input type="number" class="form-control form-control-sm text-center" id="numNights" required min="1" value="3">
             </div>
 
-            <div class="mb-3 text-center">
+            <div class="mb-3">
                 <label for="temps" class="form-label">2/ Vers quel climat ? 🌎</label>
-                <select class="form-select" id="climate" required>
-                    <option value="moderate">&#x1F60E;Modéré</option>
-                    <option value="hot">&#129398;Chaud</option>
-                    <option value="cold">&#129397;Froid</option>
+                <select class="form-select form-control-sm text-center" id="climate" required>
+                    <option value="moderate">&#x1F60E; Modéré</option>
+                    <option value="hot">&#129398; Chaud</option>
+                    <option value="cold">&#129397; Froid</option>
                 </select>
             </div>
     
@@ -32,15 +32,13 @@
         </form>
     
         <div class="mt-4" id="ListeAffairesdiv" style="display: none;">
-            <h2>Voilà ce que vous devez prendre pour etre bien :</h2>
+            <h2>Voilà ce que vous devez prendre pour être bien :</h2>
             <ul id="ListeAffaires"></ul>
             <button class="btn btn-secondary" onclick="reset(e)">Recommencer</button>
         </div>
     </div>
 
-
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.min.js"></script>
 
 </body>
 </html>
